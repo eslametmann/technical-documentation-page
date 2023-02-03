@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width = devicewidth, initial-scale=0.1"/>
+    <link rel="stylesheet" href="styles.css"> 
+    <title>Python RegEx</title>
+</head>
+<body>
+    <main id="main-doc">
+        <nav id="navbar">
+            <header>RE Documentation</header>
+            <ul>
+                <li><a class="nav-link" href="#Python_Regular_Expressions">Python Regular Expressions</a></li>
+                <li><a class="nav-link" href="#Basic_Patterns">Basic Patterns</a></li>
+                <li><a class="nav-link" href="#functions">functions</a></li>
+                <li><a class="nav-link" href="#Sets">Sets</a></li>
+                <li><a class="nav-link" href="#Examples">Examples</a></li>
+            </ul>
+        </nav>
+
+        <section class="main-section" id="Python_Regular_Expressions">
+            <header id="title">Python Regular Expressions</header>
+            <p>Regular expressions are a powerful language for matching text patterns.</p>
+            <p> The Python "re" module provides regular expression support.</p>
+            <label for="#fld">In Python a regular expression search is typically written as:</label>
+            <fieldset id="fld">
+                <code>match = re.search(pat, str)</code>
+            </fieldset>
+            <p>The re.search() method takes a regular expression pattern and a string and searches for that pattern within the string. If the search is successful, search() returns a match object or None otherwise.</p>
+            <p>Things get more interesting when you use + and * to specify repetition in the pattern</p>
+        </section>
+        <hr>
+        <section class="main-section" id="Basic_Patterns">
+            <header>Basic Patterns</header>
+            <p>The power of regular expressions is that they can specify patterns, not just fixed characters. Here are the most basic patterns which match single chars:</p>
+            <ul>
+                <li><span> a, X, 9, &#60; </span>-- ordinary characters just match themselves exactly. The meta-characters which do not match themselves because they have special meanings are: <span> . ^ $ * + ? { [ ] \ | ( ) </span>(details below)</li>
+                <li><span> (a period)</span> -- matches any single character except newline '\n'</li>
+                <li><span>\w</span> -- (lowercase w) matches a "word" character: a letter or digit or underbar <span> [a-zA-Z0-9_].</span> </li>
+                <li><span>\b </span>-- boundary between word and non-word</li>
+                <li><span>\s </span>-- (lowercase s) matches a single whitespace character </li>
+                <li><span>\t, \n, \r </span>-- tab, newline, return</li>
+                <li><span>\d </span>-- decimal digit [0-9]</li>
+                <li><span>^ = </span>start,<span> $ </span>= end </li>
+                <li><span>\</span> -- inhibit the "specialness" of a character</li>
+            </ul>
+        </section>
+        <hr>
+        <section class="main-section" id="functions">
+            <header>functions</header>
+            <fieldset>
+            <code>re.search(pattern, string, flags=0)</code>
+        </fieldset>
+            <p>Scan through string looking for the first location where the regular expression pattern produces a match, and return a corresponding match object</p>
+        <fieldset>    
+            <code>re.match(pattern, string, flags=0)</code>
+        </fieldset>    
+            <p>If zero or more characters at the beginning of string match the regular expression pattern, return a corresponding match object. Return None if the string does not match the pattern</p>
+        <fieldset>    
+            <code>re.split(pattern, string, maxsplit=0, flags=0)</code>
+        </fieldset>    
+            <p>Split string by the occurrences of pattern.</p>
+        <fieldset>   
+            <code>re.findall(pattern, string, flags=0)</code>
+        </fieldset>   
+            <p>Return all non-overlapping matches of pattern in string, as a list of strings or tuples.</p>
+
+        </section>
+        <hr>
+        <section class="main-section" id="Sets">
+            <header>Sets</header>
+            <p>A set is a set of characters inside a pair of square brackets [] with a special meaning:</p>
+            <ul>
+                <li><span>[arn]</span>Returns a match where one of the specified characters (a, r, or n) is present</li>
+                <li><span>[a-n]</span>Returns a match for any lower case character, alphabetically between a and n</li>
+                <li><span>[^arn]</span>Returns a match for any character EXCEPT a, r, and n</li>
+                <li><span>[0123]</span>Returns a match where any of the specified digits (0, 1, 2, or 3) are present</li>
+                <li><span>[0-5][0-9]</span>Returns a match for any two-digit numbers from 00 and 59</li>
+                <li><span>[a-zA-Z]</span>Returns a match for any character alphabetically between a and z, lower case OR upper case</li>
+                <li><span>[+]</span>In sets, +, *, ., |, (), $,{} has no special meaning, so [+] means: return a match for any + character in the string</li>
+            </ul>
+        
+        </section>
+        <hr>
+        <section class="main-section" id="Examples">
+            <header>Examples</header>
+            <fieldset>
+                <p>Print a list of all matches</p>
+                <code>import re</code>
+                <code>
+                        txt = "The rain in Spain"
+                </code>
+                <code>
+                        x = re.findall("ai", txt)
+                </code>
+                <code>
+                        print(x)</code>
+            </fieldset>
+            <fieldset>
+                <code>
+                    print(re.split('[a-f]+', 'Aey, Boy oh boy, come here'))
+                </code>
+                <code><span>output</span>['A', 'y, Boy oh ', 'oy, ', 'om', ' h', 'r', '']</code>
+            </fieldset>
+            <fieldset>
+                <code>print(re.search("ai", "The rain in Spain"))</code>
+                <code><span>oupput</span>re.Match object; span=(5, 7), match='ai'</re.Match></code>
+            </fieldset>
+            <fieldset>
+                <code>print(re.sub(r'\s+', '', 'abc 12 \n de 23 \n f45 6'))</code>
+                <code><span>output</span>abc12de23f456</code>
+            </fieldset>
+
+        </section>
+        
+    </main>
+</body>
